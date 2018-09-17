@@ -1,0 +1,33 @@
+{
+  "name": "ab_test_selecting",
+  "version": "1.0.0",
+  "description": "Select an option from the list, particularly a/b test. Use only Math.random is wrong because the function is nondeterministic",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "generate_dom_id": "^1.0.3"
+  },
+  "devDependencies": {
+    "mocha": "5.2.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dm-kamaev/ab_test_selecting.git"
+  },
+  "keywords": [
+    "ab test",
+    "a/b",
+    "selecting variants",
+  ],
+  "author": "dm-kamaev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dm-kamaev/ab_test_selecting/issues"
+  },
+  "homepage": "https://github.com/dm-kamaev/ab_test_selecting#readme"
+}
