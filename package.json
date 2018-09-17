@@ -6,9 +6,7 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "generate_dom_id": "^1.0.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "5.2.0"
   },
@@ -22,7 +20,7 @@
   "keywords": [
     "ab test",
     "a/b",
-    "selecting variants",
+    "selecting variants"
   ],
   "author": "dm-kamaev",
   "license": "ISC",
