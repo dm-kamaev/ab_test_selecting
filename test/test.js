@@ -20,9 +20,8 @@ describe('test for AbTestSelecting', function() {
       }
     });
 
-    var page;
     for (var i = 0; i < 100; i++) {
-      page = abTestSelecting.choice('page_something');
+      var { page, variant } = abTestSelecting.choice('page_something');
     }
     assert.ok(page.variations[0].visited === page.variations[1].visited && page.variations[0].visited === 50, 'not equal and not equal 50');
   });
@@ -47,11 +46,10 @@ describe('test for AbTestSelecting', function() {
       }
     });
 
-    var page;
     for (var i = 0; i < 274; i++) {
-      page = abTestSelecting.choice('page_something');
+      var { variant, page } = abTestSelecting.choice('page_something');
     }
-    console.log(page);
+
     let [ v1, v2, v3 ]= page.variations;
     v1 = v1.visited;
     v2 = v2.visited;
@@ -80,6 +78,7 @@ describe('test for AbTestSelecting', function() {
     });
 
     assert.ok(abTestSelecting.choice('not_found') instanceof Error, 'not instance Error');
+
   });
 
 });

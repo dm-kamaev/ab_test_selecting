@@ -26,6 +26,23 @@ module.exports = class AbTestSelecting {
    * choice
    * @param  {string} key: must be in  hashAbTests
    * @return {object | error}
+   * {
+   *  variant: {
+   *   name: "first",
+   *   ratio: 50,
+   *   visited: 0,
+   *  },
+   *  page: {
+   *    variations: [{
+   *       name: "first",
+   *       ratio: 50, // required
+   *       visited: 0, // required
+   *     }, {
+   *       name: "two",
+   *       ratio: 50, // required
+   *       visited: 0, // required
+   *     }]
+   *  }
    */
   choice(key) {
     const page = this._hashTest[key];
@@ -41,24 +58,25 @@ module.exports = class AbTestSelecting {
      let totalVisited = 0;
      variations.forEach(variant => totalVisited += variant.visited || 0);
 
-     let select = false;
+     let res = false;
      const calcPercent = CalcPercent(totalVisited);
      for (var i = 0, l = variations.length; i < l; i++) {
        const variation = variations[i];
        const percent = calcPercent(variation.visited);
        if (percent < variation.ratio) {
          variation.visited++;
-         select = true;
+         res = variation;
          break;
        }
      }
 
-     if (!select) {
+     if (!res) {
        const variation = variations[Math.floor(Math.random() * variations.length)];
        variation.visited++;
+       res = variation;
      }
 
-     return page;
+     return { variant: res, page };
    }
 
 };

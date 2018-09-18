@@ -17,6 +17,7 @@ You can see distribution and you may be modify him
 
 ```javascript
   const AbTestSelecting = require('ab_test_selecting.js');
+  // load settings
   const abTestSelecting = new AbTestSelecting({
     page_something: {
       variations: [{
@@ -35,20 +36,33 @@ You can see distribution and you may be modify him
     }
   });
 
-  var page;
+  var page, variant;
   for (var i = 0; i < 274; i++) {
-    page = abTestSelecting.choice('page_something');
+    var res = abTestSelecting.choice('page_something');
+    if (res instanceof Error) {
+      throw res;
+    }
+    ({ page, variant } = res);
   }
   // {
-  //  variations: [
-  //   { name: 'first', ratio: 25, visited: 67 },
-  //   { name: 'two', ratio: 60, visited: 163 },
-  //   { name: 'three', ratio: 15, visited: 44 }
-  //  ]
+  //   variations: [{
+  //     name: 'first',
+  //     ratio: 25,
+  //     visited: 68
+  //   }, {
+  //     name: 'two',
+  //     ratio: 60,
+  //     visited: 163
+  //   }, {
+  //     name: 'three',
+  //     ratio: 15,
+  //     visited: 43
+  //   }]
   // }
   console.log(page);
+  // { name: 'two', ratio: 60, visited: 163 }
+  console.log(variant);
 
-  // write page.variations in database
 ```
 
 
